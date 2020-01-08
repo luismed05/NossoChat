@@ -22,7 +22,7 @@ io.on('connection', socket => {
     socket.emit('mensagensAnteriores', mensagens);
 
     socket.on('envioMensagem', data => {
-        console.log("mensagem enviada: " + data.mensagem)
+        //console.log("mensagem enviada: " + data.mensagem)
         mensagens.push(data);
         socket.broadcast.emit('mensagemRecebida', data);
     });
