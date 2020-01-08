@@ -27,6 +27,6 @@ io.on('connection', socket => {
     });
 });
 
-http.listen(process.env.PORT || 4000, function(){
+server.listen(process.env.PORT || 4000, function(){
     console.log("server running");
 });
