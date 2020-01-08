@@ -50,6 +50,12 @@ html, body {
     margin-top: 10px;
   }
   
+    .message{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;  
+    }
+
   .messages {
     width: 600px;
     height: 400px;

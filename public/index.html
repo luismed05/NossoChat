@@ -6,6 +6,7 @@
     <link rel="manifest" href="../manifest.json">
     <title>Private Chat</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 </head>
@@ -21,7 +22,16 @@
         var socket = io('');
 
         function renderMessage(message){
-            $('.messages').append(`<div class="message"><strong>${message.autor}</strong> disse: <small>${message.mensagem}</small></div>`)
+            $('.messages').append(`
+            <div class="message">
+                <div>
+                    <strong>${message.autor}</strong> disse: <small>${message.mensagem}</small>
+                </div>
+                <div>
+                    <small class="text-muted">${message.time}</small>
+                </div>
+            </div>
+            `)
         }
 
         socket.on('mensagensAnteriores', function(mensagens){
@@ -39,11 +49,14 @@
 
             var autor = $('input[name=username]').val();
             var mensagem = $('input[name=message]').val();
+            var tempo = new Date();
+            tempo = tempo.toLocaleTimeString();
 
             if(autor.length && mensagem.length) {
                 var Objetomensagem = {
                     autor: autor,
                     mensagem: mensagem,
+                    time: tempo,
                 };
 
                 renderMessage(Objetomensagem);
