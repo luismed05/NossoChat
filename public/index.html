@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Private Chat</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+</head>
+<body>
+    <form id="chat">
+        <h2>Nosso Little Chat </h2>
+        <input type="text" name="username" placeholder="Digite seu Usuario">
+        <div class="messages"></div>
+        <input type="text" name="message" placeholder="Digite sua mensagem">
+        <button type="submit">Enviar</button>
+    </form>
+    <script type='text/javascript'>
+        var socket = io('http://localhost:3000/');
+
+        function renderMessage(message){
+            $('.messages').append(`<div class="message"><strong>${message.autor}</strong> disse: <small>${message.mensagem}</small></div>`)
+        }
+
+        socket.on('mensagensAnteriores', function(mensagens){
+            for (mensagem of mensagens){
+                renderMessage(mensagem);
+            }
+        });
+
+        socket.on('mensagemRecebida', function(mensagem){
+            renderMessage(mensagem);
+        })
+
+        $('#chat').submit(function(event){
+            event.preventDefault();
+
+            var autor = $('input[name=username]').val();
+            var mensagem = $('input[name=message]').val();
+
+            if(autor.length && mensagem.length) {
+                var Objetomensagem = {
+                    autor: autor,
+                    mensagem: mensagem,
+                };
+
+                renderMessage(Objetomensagem);
+
+                socket.emit('envioMensagem', Objetomensagem);
+                $('input[name=message]').val('');
+            }
+        });
+
+        
+    </script>
+</body>
+</html>
