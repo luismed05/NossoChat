@@ -1,7 +1,21 @@
 html, body {
     height: 100%;
   }
-  
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  input {
+      max-width: 300px;
+  }
+  .messages {
+      max-width: 300px;
+  }
+  button {
+      max-width: 300px;
+  }
+}
+
+
   * {
     margin: 0;
     padding: 0;
