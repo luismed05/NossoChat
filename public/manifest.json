@@ -3,9 +3,7 @@
   "short_name": "PV",
   "theme_color": "#2196f3",
   "background_color": "#2196f3",
-  "display": "fullscreen",
-  "Scope": "/",
-  "start_url": "https://nossochat.herokuapp.com/",
-  "icons": null,
+  "display": "standalone",
+  "start_url": "/index.html",
   "splash_pages": null
 }
