@@ -1,0 +1,8 @@
+{
+	"name" : "Private Chat",
+	"short_name" : "PV",
+	"start_url" : "http://nossochat.herokuapp.com/",
+	"display" : "standalone",
+	"orientation" : "any",
+	"lang" : "Portuguese"
+}
